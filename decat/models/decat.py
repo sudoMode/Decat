@@ -4,7 +4,6 @@ from decat.vocabulary import get_stop_words
 from json import loads
 
 
-# from json import dumps
 class Decat:
 
 	def __init__(self, text=None, language='english', min_length=2,
@@ -198,11 +197,8 @@ class Decat:
 		"""
 		if prioritize_large_tokens:
 			self.__go_for_large_tokens(text, exclude_stopwords)
-		# print('Tokens: ', self.possible_words)
 		else:
 			self.__go_for_small_tokens(text, exclude_stopwords)
-
-	# print('Tokens: ', self.possible_words)
 
 	def update_stopwords(self, stopwords, alpha_check=True):
 		try:
