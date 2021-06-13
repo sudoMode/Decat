@@ -1,29 +1,28 @@
 """
+A naive algorithm won't give good results when applied to real-world data.
+Exploit relative word frequency to give accurate results for real-word text.
 
-A naive algorithm won't give good results when applied to real-world data. Here is a 20-line algorithm that
-exploits relative word frequency to give accurate results for real-word text.
-
-(If you want an answer to your original question which does not use word frequency, you need to refine what
-exactly is meant by "longest word": is it better to have a 20-letter word and ten 3-letter words, or is it
-better to have five 10-letter words? Once you settle on a precise definition, you just have to change the
-line defining wordcost to reflect the intended meaning.)
+(Define what exactly is meant by "longest word": is it better to have a 20-letter word and ten 3-letter
+words, or is itbetter to have five 10-letter words?
+Once settled on a precise definition, change the line defining wordcost to reflect the intended meaning.)
 
 The idea
 The best way to proceed is to model the distribution of the output.
-A good first approximation is to assume all words are independently distributed.
-Then you only need to know the relative frequency of all words.
-It is reasonable to assume that they follow Zipf's law,
-that is the word with rank n in the list of words has probability roughly 1/(n log N)
+A good approximation is to assume all words are independently distributed.
+Then we only need to know the relative frequency of all words.
+We are assuming that they follow Zipf's law, that is the word with rank n
+in the list of words has probability roughly 1/(n log N)
 where N is the number of words in the dictionary.
 
-Once you have fixed the model, you can use dynamic programming to infer the position of the spaces.
+Once the model is fixed, we can use dynamic programming to infer the position of the spaces.
 The most likely sentence is the one that maximizes the product of the probability of each individual word,
 and it's easy to compute it with dynamic programming.
 Instead of directly using the probability we use a cost defined as the logarithm of the
 inverse of the probability to avoid overflows.
-
 """
+
 from math import log
+# from math import inf  # infinity comparison
 # from json import dumps
 
 
@@ -34,98 +33,92 @@ def get_word_cost(word_rank, total_words):
         :param total_words:
         :return:
     """
+    # print('called get word cost')
     return log(word_rank*log(total_words))
 
 
 def get_cost_map(words):
+    # print('called get cost map')
     word_costs = list(map(lambda x: get_word_cost(x[0]+1, len(words)), enumerate(words)))
-    return dict(zip(words, word_costs))
+    cost_map = dict(zip(words, word_costs))
+    # print(f'CM: {cost_map}')
+    return cost_map
 
 
-# Build a cost dictionary, assuming Zipf's law and cost = -math.log(probability).
+# Build a cost dictionary, assuming Zipf's law and cost = -math.log(probability)
 # read all the words in the dictionary
-words = open("words-by-frequency.txt").read().split()[:35]
+words = open("words-by-frequency.txt").read().split()[:5]
 
 # find cost for each one
-wordcost = get_cost_map(words)
+wordcost = get_cost_map(words)  # independent operation, can be stored as static content
 
 # length of the longest word
 maxword = max(map(len, words))
-cost = [0]
+
+# cost array, to be populated character by character
+costs_by_character = [0]
 
 
 # Find the best match for the i first characters, assuming cost has
 # been built for the i-1 first characters.
 # Returns a pair (match_cost, match_length)
-def best_match(i, s):
-    t = max(0, i - maxword)
-    target_values = cost[t:i]
-    reversed_values = reversed(target_values)
-    candidates = enumerate(reversed_values)
-    print(f'I: {i} | T: {t}')
-    print(f'IC: {cost}')
-    print(f'TV: {target_values}')
-    print(f'RV: {list(reversed(target_values))}')
-    print(f'CAN: {list(enumerate(reversed(target_values)))}')
-    print('-------------')
+def get_minimum_cost_pair(index, string):
+    # this variable is use to extract relevant values from cost array
+    # these values never exceed the maxword in number
+    start = max(0, index - maxword)
 
-    tc = []
-    for k, c in enumerate(reversed(target_values)):
-        print(f'K: {k} | C: {c}')
-        ts = s[i-k-1:i]
-        print(f'TS: {ts}')
-        ec1 = wordcost.get(ts, 1e1000)
-        ec2 = k + 1
-        print(f'EC: {ec1}')
-        tc.append((ec1, ec2))
-    print(f'TC: {tc}')
-    rv = min((c + wordcost.get(s[i-k-1:i], 9e999), k+1) for k, c in candidates)
-    print(f'RVR: {rv}')
-    print('_________________________________________')
+    # extract relevant values, always limited to maxword in number
+    target_values = costs_by_character[start:index]
 
-    return rv
+    # TODO: does this work while back tracking also?
+    reversed_values = list(reversed(target_values))
+
+    # generate pairs of indeces and cost value
+    candidates = list(enumerate(reversed_values))
+
+    cost_pairs = []
+    for k, c in candidates:
+        # overwrite start variable and use it to extract target string
+        start = index - k - 1
+        target_string = string[start:index]
+        string_cost = c + wordcost.get(target_string, 1e1000)
+        length = k + 1
+        cost_pairs.append((string_cost, length))
+    minimum_cost_pair = min(cost_pairs)
+    return minimum_cost_pair
 
 
-def infer_spaces(s):
+def decat(string):
     """
         Uses dynamic programming to infer the location of spaces in a string
         without spaces.
     """
-
     # Find the best match for the i first characters, assuming cost has
     # been built for the i-1 first characters.
     # Returns a pair (match_cost, match_length)
-    # def best_match(i):
-    #     candidates = enumerate(reversed(cost[max(0, i-maxword):i]))
-    #     return min((c + wordcost.get(s[i-k-1:i], 9e999), k+1) for k,c in candidates)
-
     # Build the cost array.
-    total_characters = len(s)
-    # cost = [0]
+    total_characters = len(string)
     for i in range(total_characters):
-        c, k = best_match(i+1, s)  # send character index starting from 1 and the whole string
-        cost.append(c)
-        print(f'C: {c} | K {k}')
-        print(f'Cost: {cost}')
-        print('============================================\n')
+        c, k = get_minimum_cost_pair(i + 1, string)  # send character index starting from 1 and the whole
+        costs_by_character.append(c)
 
-    print(f'C: {cost}')
-    return 0
+    print(f'Cost Array: {costs_by_character}\n{"-"*100}')
 
-    # Backtrack to recover the minimal-cost string.
+    # backtrack to recover the minimal-cost string
     out = []
-    i = len(s)
+    i = total_characters
     while i > 0:
-        c, k = best_match(i)
-        assert c == cost[i]
-        out.append(s[i-k:i])
-        i -= k
+        c, k = get_minimum_cost_pair(i, string)
+        # assert c == cost[i]
+        if c == costs_by_character[i]:
+            out.append(string[i-k:i])
+        i -= k  # todo: see if this needs to be nested
 
     return " ".join(reversed(out))
 
 
-# s = 'thumbgreenappleactiveassignmentweeklymetaphor'
-# s = 'downloadmentionedfilefromthegivensource'
-string = 'thepeople'
-r = infer_spaces(string)
-print(f'R: {r}')
+# string = 'thumbgreenappleactiveassignmentweeklymetaphor'
+# string = 'downloadmentionedfilefromthegivensource'
+string = 'inthe'
+r = decat(string)
+print(f'RRRRRRRRR: {r}')
