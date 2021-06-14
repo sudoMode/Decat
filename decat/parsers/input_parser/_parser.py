@@ -35,16 +35,17 @@ def parse_user_args(command_line=None):
                             description='A Python program that de-concatenates the strings'
                                         'that do not have spaces in them.',
                             )
-    sub_parser = parser.add_subparsers()
-    input_ = sub_parser.add_parser('input')
-    input_.add_argument('--string', '-s', dest='input')
-    input_.add_argument('--file', '-f', dest='input')
-    output = sub_parser.add_parser('output')
-    output.add_argument('--string', '-s', dest='output')
-    output.add_argument('--file', '-f', dest='output')
-
-    # for name, config in CLI_CONFIG.items():
-    #     _build_command(parser, name=name, **config)
+    parser.add_argument('--input', '-i', dest='input', required=False,
+                        type=str, help='Use this argument to specify your input.\n'
+                                       'This switch accepts either a piece of text'
+                                       'or a valid file path to read text from.'
+                        )
+    parser.add_argument('--output', '-o', dest='output', type=str, default=None,
+                        help='Use this argument to specify an output location,'
+                             'by default program would display the output to console.'
+                        )
+    parser.add_argument('--version', '-V', default=False, action='store_true',
+                        help='Display the version of the program')
     args = parser.parse_args(command_line)
 
     return vars(args)
