@@ -47,7 +47,7 @@ def get_cost_map(words):
 
 # Build a cost dictionary, assuming Zipf's law and cost = -math.log(probability)
 # read all the words in the dictionary
-words = open("words-by-frequency.txt").read().split()[:5]
+words = open("words-by-frequency.txt").read().split()
 
 # find cost for each one
 wordcost = get_cost_map(words)  # independent operation, can be stored as static content
@@ -109,16 +109,13 @@ def decat(string):
     i = total_characters
     while i > 0:
         c, k = get_minimum_cost_pair(i, string)
-        # assert c == cost[i]
         if c == costs_by_character[i]:
             out.append(string[i-k:i])
-        i -= k  # todo: see if this needs to be nested
+            i -= k
 
     return " ".join(reversed(out))
 
 
-# string = 'thumbgreenappleactiveassignmentweeklymetaphor'
-# string = 'downloadmentionedfilefromthegivensource'
-string = 'inthe'
-r = decat(string)
-print(f'RRRRRRRRR: {r}')
+if __name__ == '__main__':
+    test_string = "doyouever"
+    print(f'Input: {test_string} | Results: {decat(test_string)}')
