@@ -1,5 +1,4 @@
 from argparse import ArgumentTypeError
-from pathlib import Path
 
 
 class _AlphaString:

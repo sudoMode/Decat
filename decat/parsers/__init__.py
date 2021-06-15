@@ -1,1 +1,1 @@
-from decat.parsers.input_parser import parse_user_args
+from .input_parser import parse_user_args
