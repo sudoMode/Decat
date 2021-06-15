@@ -1,9 +1,15 @@
 from decat import parse_user_args
 
 
+def _print_version():
+    print('Version..')
+
+
 def main():
-    user_args = parse_user_args()
-    print(f'UA: {user_args}')
+    args = parse_user_args()
+
+    if args['version']:
+        _print_version()
 
 
 if __name__ == '__main__':

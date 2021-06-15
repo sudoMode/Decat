@@ -44,10 +44,16 @@ def parse_user_args(command_line=None):
                         help='Use this argument to specify an output location,'
                              'by default program would display the output to console.'
                         )
-    parser.add_argument('--version', '-V', default=False, action='store_true',
+    parser.add_argument('--version', '-V', default=None, action='store_true',
                         help='Display the version of the program')
     args = parser.parse_args(command_line)
-    return vars(args)
+    args_in_a_dict = vars(args)
+    values = list(args_in_a_dict.values())
+    user_did_not_pass_any_arguments = values.count(None) == len(values)
+    if user_did_not_pass_any_arguments:
+        parser.print_help()
+        exit(0)
+    return args_in_a_dict
 
 
 if __name__ == '__main__':
