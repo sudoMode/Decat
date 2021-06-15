@@ -21,9 +21,10 @@ def parse_user_args(command_line=None):
                                         'that do not have spaces in them.',
                             )
     parser.add_argument('--input', '-i', dest='input', required=False,
-                        type=input_type, help='Use this argument to specify your input.\n'
-                                       'This switch accepts either a piece of text'
-                                       'or a valid file path to read text from.'
+                        type=input_type,
+                        help='Use this argument to specify your input.\n'
+                             'This switch accepts either a piece of text'
+                             'or a valid file path to read text from.'
                         )
     parser.add_argument('--version', '-V', default=None, action='store_true',
                         help='Display the version of the program')
