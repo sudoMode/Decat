@@ -1,32 +1,17 @@
 from argparse import ArgumentParser
-# from _config import CLI_CONFIG
+from ._validators import VALIDATORS
 
 
-def _add_positional_arguments(parser, config):
-    if not(isinstance(parser, ArgumentParser)):
-        raise TypeError(f'Expected "ArgumentParser" object, received {type(parser)}')
-    for name, options in config.items():
-        sub_parser = parser.add_subparsers(dest=name)
-        _build_command(sub_parser, name=name, **options)
+input_type = VALIDATORS.get('input', str)
 
 
-def _add_optional_arguments(parser, config):
-    if not(isinstance(parser, ArgumentParser)):
-        raise TypeError(f'Expected "ArgumentParser" object, received {type(parser)}')
-    for _, options in config.items():
-        name, flag = options['name'], options['flag']
-        options = {k: v for (k, v) in options.items() if k not in ['name', 'flag']}
-        parser.add_argument(name, flag, **options)
-
-
-# noinspection PyShadowingBuiltins
-def _build_command(parser, name=None, help=None, description=None, positional_arguments=None,
-                   optional_arguments=None):
-    command = parser.add_parser(name, help=help, description=description)
-    if optional_arguments is not None:
-        _add_optional_arguments(command, optional_arguments)
-    if positional_arguments is not None:
-        _add_positional_arguments(command, positional_arguments)
+def _validate_user_args(args, parser):
+    args_in_a_dict = vars(args)
+    values = list(args_in_a_dict.values())
+    user_did_not_pass_any_arguments = values.count(None) == len(values)
+    if user_did_not_pass_any_arguments:
+        parser.print_help()
+        exit(0)
 
 
 def parse_user_args(command_line=None):
@@ -36,24 +21,21 @@ def parse_user_args(command_line=None):
                                         'that do not have spaces in them.',
                             )
     parser.add_argument('--input', '-i', dest='input', required=False,
-                        type=str, help='Use this argument to specify your input.\n'
+                        type=input_type, help='Use this argument to specify your input.\n'
                                        'This switch accepts either a piece of text'
                                        'or a valid file path to read text from.'
                         )
-    parser.add_argument('--output', '-o', dest='output', type=str, default=None,
-                        help='Use this argument to specify an output location,'
-                             'by default program would display the output to console.'
-                        )
+    # parser.add_argument('--output', '-o', dest='output', type=output_type,
+    #                     default=None,
+    #                     help='Use this argument to specify an output'
+    #                          'location, by default program would display'
+    #                          'the output to console.'
+    #                     )
     parser.add_argument('--version', '-V', default=None, action='store_true',
                         help='Display the version of the program')
     args = parser.parse_args(command_line)
-    args_in_a_dict = vars(args)
-    values = list(args_in_a_dict.values())
-    user_did_not_pass_any_arguments = values.count(None) == len(values)
-    if user_did_not_pass_any_arguments:
-        parser.print_help()
-        exit(0)
-    return args_in_a_dict
+    _validate_user_args(args, parser)
+    return args
 
 
 if __name__ == '__main__':

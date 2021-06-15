@@ -7,9 +7,7 @@ def _print_version():
 
 def main():
     args = parse_user_args()
-
-    if args['version']:
-        _print_version()
+    print(f'UA: {args}')
 
 
 if __name__ == '__main__':
