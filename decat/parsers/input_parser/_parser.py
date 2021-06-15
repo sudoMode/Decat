@@ -47,7 +47,6 @@ def parse_user_args(command_line=None):
     parser.add_argument('--version', '-V', default=False, action='store_true',
                         help='Display the version of the program')
     args = parser.parse_args(command_line)
-
     return vars(args)
 
 
