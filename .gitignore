@@ -1,3 +1,10 @@
+raw_vocab/
+.idea/
+rough.ipynb
+notes.md
+*.xml
+*.html
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
