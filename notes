@@ -18,4 +18,9 @@
             -> find range to pick values from cost array
                 -> start = max(0, i - maxword)
                 -> end = current index
- ddddddddddd
+
+
+ PAT----------------------------
+ {
+    "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"
+ }
