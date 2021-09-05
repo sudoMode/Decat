@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from ._validators import VALIDATORS
+from decat.parsers.input_parser._validators import VALIDATORS
 
 
 input_type = VALIDATORS.get('input', str)
@@ -22,7 +22,7 @@ def parse_user_args(command_line=None):
                             )
     parser.add_argument('--input', '-i', dest='input', required=False,
                         type=input_type,
-                        help='Use this argument to specify your input.\n'
+                        help='Use this argument to specify your input string.\n'
                              'This switch accepts either a piece of text'
                              'or a valid file path to read text from.'
                         )
@@ -34,6 +34,5 @@ def parse_user_args(command_line=None):
 
 
 if __name__ == '__main__':
-    # specify test arguments in a list -> (ex: ['run', 'tickers', '-l', '1', '2'])
     command_line = None
     print(f'User Args: {parse_user_args(command_line=command_line)}')

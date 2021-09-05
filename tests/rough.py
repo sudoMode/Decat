@@ -117,5 +117,6 @@ def decat(string):
 
 
 if __name__ == '__main__':
-    test_string = "doyouever"
+    test_string = "doyouever,run"
     print(f'Input: {test_string} | Results: {decat(test_string)}')
+    print(f'C: {costs_by_character}')
