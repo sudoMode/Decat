@@ -5,15 +5,19 @@ from unittest import TestCase
 from unittest import main
 
 
-INPUT_FILE = 'extractor_input.json'
+EXTRACTOR_INPUT = 'extractor_input.json'
+PASSAGE_INPUT = 'passage_input.json'
 
 
 class DecatTester(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        with open(INPUT_FILE, 'r') as f:
-            cls.input_data = json.loads(f.read())
+        with open(EXTRACTOR_INPUT, 'r') as f:
+            cls.extractor_input = json.loads(f.read())
+
+        with open(PASSAGE_INPUT, 'r') as f:
+            cls.passage_input = json.loads(f.read())
 
     @classmethod
     def tearDownClass(cls):
@@ -25,11 +29,15 @@ class DecatTester(TestCase):
     def tearDown(self):
         pass
 
-    def test_decat(self):
-        for key, value in self.input_data.items():
+    def test_simple_decat(self):
+        for key, value in self.extractor_input.items():
             out = decat(key)
-            print(f'I: {key} | J: {value} | O: {out}')
-            self.assertEqual(decat(key), value)
+            self.assertEqual(out, value)
+
+    def test_passage_decat(self):
+        for passage in self.passage_input:
+            out = decat(passage['input'])
+            self.assertEqual(out, passage['output'])
 
 
 if __name__ == '__main__':
