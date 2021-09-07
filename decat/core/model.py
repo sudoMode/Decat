@@ -40,7 +40,7 @@ class Decat:
 
     def _load_target_string(self, string):
         # remove punctuation marks, numbers and white spaces
-        self.target_string = ''.join(e for e in string if e.isalpha())
+        self.target_string = ''.join(filter(lambda x: x.isalpha(), string)).lower()
         self.costs = [0]
 
     def _get_minimum_cost_pair(self, i):
@@ -67,14 +67,3 @@ class Decat:
         self._load_target_string(string=target_string)
         self._compute_costs()
         self._backtrack()
-
-
-def _test():
-    decat = Decat()
-    string = 'userprofile'
-    decat.decat(string)
-    print(f'I: {string} | O: {decat.out}')
-
-
-if __name__ == '__main__':
-    _test()
