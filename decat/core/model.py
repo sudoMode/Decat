@@ -41,11 +41,12 @@ class Decat:
     def _load_target_string(self, string):
         # remove punctuation marks, numbers and white spaces
         self.target_string = ''.join(e for e in string if e.isalpha())
+        self.costs = [0]
 
     def _get_minimum_cost_pair(self, i):
         return min(map(lambda x: (x[1] + self.cost_map.get(
-               self.target_string[i - x[0] - 1: i], 1e1000), x[0]+1),
-               enumerate(reversed(self.costs[max(0, i - self.max_word):i]))))
+                self.target_string[i - x[0] - 1: i], 1e1000), x[0]+1),
+                enumerate(reversed(self.costs[max(0, i - self.max_word):i]))))
 
     def _compute_costs(self):
         for i in range(1, len(self.target_string)+1):
@@ -70,7 +71,7 @@ class Decat:
 
 def _test():
     decat = Decat()
-    string = 'thisisawesome'
+    string = 'userprofile'
     decat.decat(string)
     print(f'I: {string} | O: {decat.out}')
 
