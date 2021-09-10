@@ -30,7 +30,7 @@ setup(
             packages=find_packages(where='decat'),
             py_modules=['__init__', '__main__', '__settings__'],
             include_package_data=True,
-            python_requires='>=3.6, <4',
+            python_requires='>=3.6',
             install_requires=[],
             entry_points={
                             'console_scripts': [
