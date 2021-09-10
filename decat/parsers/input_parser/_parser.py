@@ -26,7 +26,7 @@ def parse_user_args(command_line=None):
                              'This switch accepts either a piece of text'
                              'or a valid file path to read text from.'
                         )
-    parser.add_argument('--version', '-V', default=None, action='store_true',
+    parser.add_argument('--version', '-v', default=None, action='store_true',
                         help='Display the version of the program')
     args = parser.parse_args(command_line)
     _validate_user_args(args, parser)
