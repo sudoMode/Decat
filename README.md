@@ -40,35 +40,44 @@ thisisawesome --> ['this', 'is', 'awesome']
 
 ---
 
+
+<p style="color:red;font-size:100px;">test</p>
+
+
 [comment]: <> (Into)
-> ***Decat*** is a Python package capable of de-concatenating strings that do not have 
+<p style="color:white;font-size:20px;">
+***Decat*** is a Python package capable of de-concatenating strings that do not have 
 white-spaces in them, or in other words, it allows the user to infer spaces 
 programmatically. This is a simple utility that comes in handy with various modern 
 Natural Language Processing(NLP) tasks such as cleaning, exploration or even manipulation 
-of text. [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law) is at the core of this 
+of text. <a href="https://en.wikipedia.org/wiki/Zipf%27s_law">[Zipf's Law]</a> is 
+at the 
+core of this 
 project, aim is to provide an easy interface for programmers to extract meaningful 
 information out of deformed pieces of texts.
+</p>
 
 
 ## Get Started
 > ### Install It
->```python
-> >> pip install decat
->```
-> ### Play With It
-> ```python
-> >> python -m decat someweirdtext
-> >> ['some', 'weird', 'text']
->```
-> ### Use It In Your Projects
->> ```python
->> from decat import decat
->> 
->> 
->> weird_text = '“Anyfoolcanwritecodethatacomputercanunderstand.Goodprogrammerswritecodethathumanscanunderstand.”–MartinFowler'
->> weird_text_simplified = decat(weird_text)
->> print(weird_text_simplified)
+>>```python
+>> >> pip install decat
 >>```
+> ### Play With It
+>>```python
+>> >> python -m decat someweirdtext
+>> >> ['some', 'weird', 'text']
+>>```
+> ### Use It In Your Projects
+>> #### _Sample Code_
+>>> ```python
+>>> from decat import decat
+>>> 
+>>> 
+>>> weird_text = '“AnyfoolcanwritecodethatacomputercanunderstandGoodprogrammerswritecodethathumanscanunderstand.”–MartinFowler'
+>>> weird_text_simplified = decat(weird_text)
+>>> print(weird_text_simplified)
+>>>```
 >> #### _Console_
 >>> ['any', 'fool', 'can', 'write', 'code', 'that', 'a', 'computer', 'can', 
  'understand', 'good', 'programmers', 'write', 'code', 'that', 'humans', 'can', 
