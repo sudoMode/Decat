@@ -25,7 +25,7 @@ setup(
                             'Programming Language :: Python :: 3.8',
                             'Programming Language :: Python :: 3.9',
                         ],
-            keywords='nlp, python',
+            keywords='nlp, text mining',
             package_dir={'': 'decat'},
             packages=find_packages(where='decat'),
             py_modules=['__init__', '__main__', '__settings__'],
