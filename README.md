@@ -41,21 +41,16 @@ thisisawesome --> ['this', 'is', 'awesome']
 ---
 
 
-<p style="color:red;font-size:100px;">test</p>
-
-
 [comment]: <> (Into)
-<p style="color:white;font-size:20px;">
 ***Decat*** is a Python package capable of de-concatenating strings that do not have 
 white-spaces in them, or in other words, it allows the user to infer spaces 
 programmatically. This is a simple utility that comes in handy with various modern 
 Natural Language Processing(NLP) tasks such as cleaning, exploration or even manipulation 
-of text. <a href="https://en.wikipedia.org/wiki/Zipf%27s_law">[Zipf's Law]</a> is 
+of text. [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law) is 
 at the 
 core of this 
 project, aim is to provide an easy interface for programmers to extract meaningful 
 information out of deformed pieces of texts.
-</p>
 
 
 ## Get Started
