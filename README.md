@@ -87,12 +87,12 @@ information out of deformed pieces of texts.
 > vocabulary sets
 
 ## Dependencies
-> ⭕️ ___None___ 
+> ⭕️ ___None___ 🎉
 
 ## Limitations
 > ❗ Requires Python >= 3.6
 > 
-> ❗ ️All input will be treated as lower-cased
+> ❗ ️All input will be treated as lower-case
 >>```python
 >> >> ATitleCaseString --> ['a', 'title', 'case', 'string']
 >>```
