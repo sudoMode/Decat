@@ -1,5 +1,5 @@
-from parsers import parse_user_args
-from core import decat
+from src import parse_user_args
+from src import decat
 
 
 def _print_version():

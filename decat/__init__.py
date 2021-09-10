@@ -1,5 +1,5 @@
-from core import decat
-import __settings__ as project
+from .src import decat
+from src import parse_user_args
 
 
-__all__ = ['decat', 'project']
+__all__ = ['decat', 'parse_user_args']
