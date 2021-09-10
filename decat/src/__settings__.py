@@ -9,7 +9,7 @@ __micro__ = 0
 
 
 VERSION = f'{__major__}.{__minor__}.{__micro__}'
-BASE = Path(__file__).parent.parent.resolve()
+BASE = Path(__file__).parent.parent.parent.resolve()
 PROJECT = join(BASE, 'decat')
 SOURCE = join(PROJECT, 'src')
 DATA = join(PROJECT, '.data')
