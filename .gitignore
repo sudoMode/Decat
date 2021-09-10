@@ -1,11 +1,12 @@
 .ipynb_checkpoints/
 raw_vocab/
+tests/rough.py
 .idea/
 rough.ipynb
 notes.md
 *.xml
 *.html
-rough.ipynb
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
