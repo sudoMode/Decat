@@ -1,2 +1,4 @@
-from .parsers import parse_user_args
-from .core import decat
+from core import decat
+
+
+__all__ = ['decat']

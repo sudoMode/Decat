@@ -1,9 +1,9 @@
-from decat import parse_user_args
-from decat import decat
+from parsers import parse_user_args
+from core import decat
 
 
 def _print_version():
-    from decat.__settings__ import VERSION
+    from __settings__ import VERSION
     print(f'Decat {VERSION}')
 
 

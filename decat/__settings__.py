@@ -2,7 +2,6 @@
 from os.path import join
 from pathlib import Path
 
-
 # version
 __major__ = 1
 __minor__ = 0
@@ -10,7 +9,7 @@ __micro__ = 0
 
 
 NAME = 'decat'
-DESCRIPTION = """De-concatenate strings with that do not have white-spaces."""
+DESCRIPTION = """De-concatenate strings that do not have white-spaces."""
 AUTHOR = 'Mandeep Singh'
 VERSION = f'{__major__}.{__minor__}.{__micro__}'
 BASE = Path(__file__).parent.parent.resolve()

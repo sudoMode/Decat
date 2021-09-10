@@ -1,1 +1,1 @@
-from .input_parser import parse_user_args
+from parsers.input_parser import parse_user_args
