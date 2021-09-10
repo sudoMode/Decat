@@ -1,18 +1,18 @@
 from setuptools import setup
 from setuptools import find_packages
-from decat.__settings__ import *
+from pathlib import Path
 
-
+BASE = Path(__file__).parent.resolve()
 _README = (BASE / 'README.md').read_text(encoding='utf-8')
 
 
 setup(
-            name=NAME,
-            version=VERSION,
-            description=DESCRIPTION,
+            name='decat',
+            version='1.0.0',
+            description='De-concatenate strings that do not have white-spaces.',
             long_description=_README,
             long_description_content_type='text/markdown',
-            author=AUTHOR,
+            author='Mandeep Singh',
             author_email='singh.mandeep2207@gmail.com',
             url='https://github.com/sudoMode/Decat',
             license='MIT',
