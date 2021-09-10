@@ -83,8 +83,7 @@ information out of deformed pieces of texts.
 >
 >> 📚 An ever-expanding vocabulary, knows more than 300K  English words
 > 
->> 🪃 Simplistic design, allows for easy expansion to new languages and custom 
-> vocabulary sets
+>> 🪃 Simplistic design, allows for easy expansion to new languages and custom vocabulary sets
 
 ## Dependencies
 > ⭕️ ___None___ 🎉
