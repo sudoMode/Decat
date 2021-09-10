@@ -1,7 +1,7 @@
 from math import log
 from json import loads
-from decat.__settings__ import SUPPORTED_LANGUAGES
-from decat.__settings__ import VOCABULARY_MAP
+from __settings__ import SUPPORTED_LANGUAGES
+from __settings__ import VOCABULARY_MAP
 
 
 class Decat:
