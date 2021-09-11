@@ -6,20 +6,20 @@ from decat.src import parse_user_args
 from decat.src import Decat
 
 
+# check version compatibility
 major, minor, micro = version.major, version.minor, version.micro
 required = 3.6
 if float(f'{major}.{minor}') < required:
     print(f'Required Python >= {required}, detected: {major}.{minor}.{micro}')
     exit(0)
 
-client = None
+
+# init client
+client = Decat(supported_languages=SUPPORTED_LANGUAGES, vocabulary_map=VOCABULARY_MAP)
 
 
+# decat user input
 def decat(string):
-    global client
-    if client is None:
-        client = Decat(supported_languages=SUPPORTED_LANGUAGES,
-                       vocabulary_map=VOCABULARY_MAP)
     client.decat(string)
     return client.out
 
