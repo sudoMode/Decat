@@ -60,7 +60,7 @@ information out of deformed pieces of texts.
 >>```
 > ### Play With It
 >>```python
->> >> python -m decat someweirdtext
+>> >> python -m decat -i someweirdtext
 >> >> ['some', 'weird', 'text']
 >>```
 > ### Use It In Your Projects
