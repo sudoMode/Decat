@@ -1,17 +1,17 @@
 from math import log
 from json import loads
-from decat.__settings__ import SUPPORTED_LANGUAGES
-from decat.__settings__ import VOCABULARY_MAP
 
 
 class Decat:
 
-    def __init__(self, target_string=None, language='en'):
-        assert language in SUPPORTED_LANGUAGES.values(), f'Language "{language}" is not' \
+    def __init__(self, supported_languages, vocabulary_map, target_string=None,
+                 language='en'):
+        assert language in supported_languages.values(), f'Language "{language}" is not' \
                                                          f' supported yet, pick from: ' \
-                                                         f'{SUPPORTED_LANGUAGES.keys()}'
+                                                         f'{supported_languages.keys()}'
         self.target_string = target_string
         self.language = language
+        self.vocabulary_map = vocabulary_map
         self.vocabulary = list()
         self.max_word = 0
         self.cost_map = dict()
@@ -29,7 +29,7 @@ class Decat:
         self.max_word = max(map(len, self.vocabulary))
 
     def _load_vocabulary(self):
-        vocabulary = VOCABULARY_MAP[self.language]
+        vocabulary = self.vocabulary_map[self.language]
         with open(vocabulary, 'r') as f:
             self.vocabulary = loads(f.read())
 

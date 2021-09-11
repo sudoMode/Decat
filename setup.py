@@ -1,18 +1,18 @@
 from setuptools import setup
 from setuptools import find_packages
-from decat.__settings__ import *
+from pathlib import Path
 
-
+BASE = Path(__file__).parent.resolve()
 _README = (BASE / 'README.md').read_text(encoding='utf-8')
 
 
 setup(
-            name=NAME,
-            version=VERSION,
-            description=DESCRIPTION,
+            name='decat',
+            version='0.0.1',
+            description='De-concatenate strings that do not have white-spaces.',
             long_description=_README,
             long_description_content_type='text/markdown',
-            author=AUTHOR,
+            author='Mandeep Singh',
             author_email='singh.mandeep2207@gmail.com',
             url='https://github.com/sudoMode/Decat',
             license='MIT',
@@ -25,12 +25,12 @@ setup(
                             'Programming Language :: Python :: 3.8',
                             'Programming Language :: Python :: 3.9',
                         ],
-            keywords='nlp, python',
+            keywords='nlp, text mining',
             package_dir={'': 'decat'},
             packages=find_packages(where='decat'),
             py_modules=['__init__', '__main__', '__settings__'],
             include_package_data=True,
-            python_requires='>=3.6, <4',
+            python_requires='>=3.6',
             install_requires=[],
             entry_points={
                             'console_scripts': [
