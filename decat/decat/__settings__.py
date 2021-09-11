@@ -5,14 +5,13 @@ from pathlib import Path
 # version
 __major__ = 0
 __minor__ = 0
-__micro__ = 2
+__micro__ = 3
 
 
 VERSION = f'{__major__}.{__minor__}.{__micro__}-alpha'
 BASE = Path(__file__).parent.parent.resolve()
 PROJECT = join(BASE, 'decat')
-SOURCE = join(PROJECT, 'src')
-DATA = join(PROJECT, '.data')
+DATA = join(BASE, '.data')
 VOCABULARY = join(DATA, 'vocabulary')
 SUPPORTED_LANGUAGES = dict(english='en')
 VOCABULARY_MAP = dict(zip(SUPPORTED_LANGUAGES.values(),
