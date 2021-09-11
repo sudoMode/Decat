@@ -8,7 +8,7 @@ _README = (BASE / 'README.md').read_text(encoding='utf-8')
 
 setup(
             name='decat',
-            version='0.0.1-alpha',
+            version='0.0.2-alpha',
             description='De-concatenate strings that do not have white-spaces.',
             long_description=_README,
             long_description_content_type='text/markdown',
