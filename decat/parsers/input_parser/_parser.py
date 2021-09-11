@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from decat.src.parsers.input_parser._validators import VALIDATORS
+from decat.parsers.input_parser._validators import VALIDATORS
 
 
 input_type = VALIDATORS.get('input', str)

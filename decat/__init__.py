@@ -2,8 +2,8 @@ from sys import version_info as version
 from decat.__settings__ import SUPPORTED_LANGUAGES
 from decat.__settings__ import VERSION
 from decat.__settings__ import VOCABULARY_MAP
-from decat.src import parse_user_args
-from decat.src import Decat
+from decat.parsers import parse_user_args
+from decat.core import Decat
 
 
 # check version compatibility
