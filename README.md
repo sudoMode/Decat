@@ -49,7 +49,7 @@ Natural Language Processing(NLP) tasks such as cleaning, exploration or even man
 of text. [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law) is 
 at the 
 core of this 
-project, aim is to provide an easy interface for programmers to extract meaningful 
+project, the aim is to provide an easy interface for programmers to extract meaningful 
 information out of deformed pieces of texts.
 
 
@@ -81,7 +81,7 @@ information out of deformed pieces of texts.
 ## Features
 >> 🪶 A light weight package, built around the features available in standard library
 >
->> 📚 An ever-expanding vocabulary, knows more than 300K  English words
+>> 📚 An ever-expanding vocabulary, knows more than 300K English words
 > 
 >> 🪃 Simplistic design, allows for easy expansion to new languages and custom vocabulary sets
 
@@ -95,8 +95,8 @@ information out of deformed pieces of texts.
 >>```python
 >> >> ATitleCaseString --> ['a', 'title', 'case', 'string']
 >>```
-> ❗️ Punctuation marks, numbers and all other special characters will stripped from the
-   > input and will not be preserved in the output
+> ❗️ Punctuation marks, numbers and special characters will be stripped from the input and
+> will not be preserved in the output
 >>```python
 >> >>  dummy.email1234@gmail.com --> ['dummy', 'email', 'gmail', 'com']
 >>```
