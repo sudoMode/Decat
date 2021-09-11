@@ -5,12 +5,12 @@ from os.path import join
 from pathlib import Path
 
 # version
-__major__ = 0
-__minor__ = 1
+__major__ = 1
+__minor__ = 0
 __micro__ = 0
 
 
-VERSION = f'{__major__}.{__minor__}.{__micro__}-alpha'
+VERSION = f'{__major__}.{__minor__}.{__micro__}'
 BASE = Path(__file__).parent.resolve()
 DATA = join(BASE, '.data')
 VOCABULARY = join(DATA, 'vocabulary')
