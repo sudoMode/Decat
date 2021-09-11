@@ -6,6 +6,7 @@ rough.ipynb
 notes.md
 *.xml
 *.html
+testenv/
 
 
 # Byte-compiled / optimized / DLL files
