@@ -5,7 +5,7 @@ from pathlib import Path
 # version
 __major__ = 0
 __minor__ = 0
-__micro__ = 1
+__micro__ = 2
 
 
 VERSION = f'{__major__}.{__minor__}.{__micro__}-alpha'
