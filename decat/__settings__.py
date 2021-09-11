@@ -8,7 +8,7 @@ __minor__ = 0
 __micro__ = 1
 
 
-VERSION = f'{__major__}.{__minor__}.{__micro__}'
+VERSION = f'{__major__}.{__minor__}.{__micro__}-alpha'
 BASE = Path(__file__).parent.parent.resolve()
 PROJECT = join(BASE, 'decat')
 SOURCE = join(PROJECT, 'src')
