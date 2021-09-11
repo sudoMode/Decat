@@ -8,4 +8,4 @@ include LICENSE
 include setup.py
 
 # data
-recursive-include decat/.data *
+recursive-include src/decat/.data *

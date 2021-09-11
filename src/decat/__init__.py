@@ -28,8 +28,17 @@ def print_version():
     print(f'Decat {VERSION}')
 
 
+def hook():
+    args = parse_user_args()
+    if not(args.input or args.version):
+        print('help menu')
+    if args.version:
+        print_version()
+    if args.input:
+        decat(args.input)
+
+
 __all__ = [
+            'hook',
             'decat',
-            'parse_user_args',
-            'print_version'
           ]
