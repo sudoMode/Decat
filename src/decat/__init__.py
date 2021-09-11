@@ -1,3 +1,6 @@
+#!/usr/local/bin/python3.9
+# -*- coding: utf-8 -*-
+
 from sys import version_info as version
 from decat.__settings__ import SUPPORTED_LANGUAGES
 from decat.__settings__ import VERSION
@@ -24,18 +27,13 @@ def decat(string):
     return client.out
 
 
-def print_version():
-    print(f'Decat {VERSION}')
-
-
+# allows for a CLI
 def hook():
     args = parse_user_args()
-    if not(args.input or args.version):
-        print('help menu')
     if args.version:
-        print_version()
+        print(f'Decat {VERSION}')
     if args.input:
-        decat(args.input)
+        print(decat(args.input))
 
 
 __all__ = [
