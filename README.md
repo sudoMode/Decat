@@ -24,7 +24,7 @@ thisisawesome --> ['this', 'is', 'awesome']
 
 [comment]: <> (badges 2)
 <p align="center">
-    <a href="#">
+    <a href="https://www.codefactor.io/repository/github/sudomode/decat">
         <img src="https://img.shields.io/codefactor/grade/github/sudomode/decat/master?style=for-the-badge"/>
     </a>
     <a href="#">
