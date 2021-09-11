@@ -4,8 +4,8 @@ from json import loads
 
 class Decat:
 
-    def __init__(self, target_string=None, language='en', vocabulary_map=None,
-                 supported_languages=None):
+    def __init__(self, supported_languages, vocabulary_map, target_string=None,
+                 language='en'):
         assert language in supported_languages.values(), f'Language "{language}" is not' \
                                                          f' supported yet, pick from: ' \
                                                          f'{supported_languages.keys()}'

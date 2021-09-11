@@ -1,10 +1,6 @@
-from src import parse_user_args
-from src import decat
-
-
-def _print_version():
-    from __settings__ import VERSION
-    print(f'Decat {VERSION}')
+from decat import parse_user_args
+from decat import print_version
+from decat import decat
 
 
 def main():
@@ -12,9 +8,8 @@ def main():
     if args.input:
         out = decat(args.input)
         print(out)
-        return out
     if args.version:
-        _print_version()
+        print_version()
 
 
 if __name__ == '__main__':

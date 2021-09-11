@@ -1,4 +1,4 @@
-from .model import Decat
+from decat.src.core.model import Decat
 
 
 __all__ = ['Decat']
