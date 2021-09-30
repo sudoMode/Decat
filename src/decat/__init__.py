@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from sys import version_info as version
-from decat.__settings__ import SUPPORTED_LANGUAGES
-from decat.__settings__ import VERSION
-from decat.__settings__ import VOCABULARY_MAP
-from decat.parsers import parse_user_args
-from decat.core import Decat
 
+from decat import __settings__ as settings
+from decat.core import Decat
+from decat.parsers import parse_user_args
 
 # check version compatibility
 major, minor, micro = version.major, version.minor, version.micro
@@ -16,9 +14,9 @@ if float(f'{major}.{minor}') < required:
     print(f'Required Python >= {required}, detected: {major}.{minor}.{micro}')
     exit(0)
 
-
 # init client
-client = Decat(supported_languages=SUPPORTED_LANGUAGES, vocabulary_map=VOCABULARY_MAP)
+client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
+               vocabulary_map=settings.VOCABULARY_MAP)
 
 
 # decat user input
@@ -28,15 +26,23 @@ def decat(string):
 
 
 # allows for a CLI
-def hook():
+def main():
     args = parse_user_args()
     if args.version:
-        print(f'Decat {VERSION}')
+        print(f'Decat {settings.VERSION}')
     if args.input:
         print(decat(args.input))
 
 
 __all__ = [
-            'hook',
-            'decat',
-          ]
+    'main',
+    'decat',
+]
+
+
+def test():
+    print(decat('teststring'))
+
+
+if __name__ == '__main__':
+    test()
