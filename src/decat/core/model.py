@@ -90,9 +90,10 @@ class Decat:
             _out = list(out)
             length = len(_out)
             for index, punctuation in self.punctuation_map.items():
-                if index in range(counter, counter + length):
+                if index in range(counter, counter + length+1):
                     _out.insert(index - counter, punctuation)
-            counter += len(_out)
+                    length = len(_out)
+            counter += length
             self.out.append(''.join(_out))
             print(f'O: {_out}')
         print('RR: ', self._out)
