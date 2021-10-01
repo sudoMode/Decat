@@ -7,7 +7,7 @@ class Decat:
                         '(', ')', '`', '...', '"', "'"]
 
     def __init__(self, supported_languages, vocabulary_map, target_string='',
-                 language='en', preserve_punctuation_marks=True):
+                 language='en', preserve_punctuation_marks=False):
         assert language in supported_languages.values(), f'Language "{language}" is not' \
                                                          f' supported yet, pick from: ' \
                                                          f'{supported_languages.keys()}'
@@ -49,6 +49,7 @@ class Decat:
 
     def _load_target_string(self, string):
         # remove punctuation marks, numbers and white spaces
+        string = string.replace(' ', '')
         self._target_string = string
         for i in range(len(string)):
             char = string[i]
@@ -56,9 +57,7 @@ class Decat:
                 if char in Decat.PUNTUATION_MARKS:
                     self.punctuation_map[i] = char
                     continue
-            self.target_string += char
-        print('Processed: ', self.target_string)
-        print('Raw: ', self._target_string)
+            if char.isalpha(): self.target_string += char.lower()
         self._reset_costs()
 
     def _get_minimum_cost_pair(self, i):
@@ -83,7 +82,6 @@ class Decat:
 
     def _flush_out(self):
         _out = []
-        print('PM: ', self.punctuation_map)
         counter = 0
         for out in self._out:
             inserted = 0
@@ -95,10 +93,6 @@ class Decat:
                     length = len(_out)
             counter += length
             self.out.append(''.join(_out))
-            print(f'O: {_out}')
-        print('RR: ', self._out)
-        print('RP: ', self.out)
-        # self.out = self._out
 
     def _setup(self):
         pass
@@ -113,14 +107,12 @@ class Decat:
 def _test():
     from decat import __settings__ as settings
     client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
-                   vocabulary_map=settings.VOCABULARY_MAP)
-    test_string = '{te,sting#string!is,cool'
+                   vocabulary_map=settings.VOCABULARY_MAP,
+                   preserve_punctuation_marks=False)
+    test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\" she said."
     client.decat(target_string=test_string)
     # print(client.out)
 
 
 if __name__ == '__main__':
     _test()
-    """
-        
-    """

@@ -35,9 +35,9 @@ def main():
 
 
 __all__ = [
-    'main',
-    'decat',
-]
+            'main',
+            'decat',
+          ]
 
 
 def test():
