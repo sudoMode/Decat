@@ -3,7 +3,7 @@ from math import log
 
 
 class Decat:
-    PUNTUATION_MARKS = [',', '.', '?', '!', '#', ':', ';', '-', '[', ']', '{', '}',
+    CHARACTERS_TO_PRESERVE = [',', '.', '?', '!', '#', ':', ';', '-', '[', ']', '{', '}',
                         '(', ')', '`', '...', '"', "'", '@', '0', '1', '2', '3', '4',
                         '5', '6', '7', '8', '9']
 
@@ -70,7 +70,7 @@ class Decat:
         for i in range(len(string)):
             char = string[i]
             if self.preserve_special_characters:
-                if char in Decat.PUNTUATION_MARKS:
+                if char in Decat.CHARACTERS_TO_PRESERVE:
                     self.punctuation_map[i] = char
                     continue
             if char.isalpha(): self.target_string += char.lower()
