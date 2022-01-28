@@ -4,8 +4,8 @@ from math import log
 
 class Decat:
     CHARACTERS_TO_PRESERVE = [',', '.', '?', '!', '#', ':', ';', '-', '[', ']', '{', '}',
-                        '(', ')', '`', '...', '"', "'", '@', '0', '1', '2', '3', '4',
-                        '5', '6', '7', '8', '9']
+                              '(', ')', '`', '...', '"', "'", '@', '0', '1', '2', '3',
+                              '4', '5', '6', '7', '8', '9']
 
     def __init__(self, supported_languages, vocabulary_map, target_string='',
                  language='en', preserve_special_characters=False):
@@ -31,16 +31,29 @@ class Decat:
         return round(log(rank * log(total)), decimals)
 
     def _load(self):
+        """
+            - Load vocabulary
+            - Load cost map
+            - Set max word based on the longest token
+        """
         self._load_vocabulary()
         self._load_cost_map()
         self.max_word = max(map(len, self.vocabulary))
 
     def _load_vocabulary(self):
+        """
+            - Load vocabulary, a list of dictionary words
+            - Vocabulary token are ordered based on frequency of usage
+        """
+        # TODO: model should have direct access to vocabulary
         vocabulary = self.vocabulary_map[self.language]
         with open(vocabulary, 'r') as f:
             self.vocabulary = loads(f.read())
 
     def _load_cost_map(self):
+        """
+            Build a cost-map for each token in the vocabulary
+        """
         total = len(self.vocabulary)
         costs = list(map(lambda x: Decat._get_word_cost(x, total), range(1, total + 1)))
         self.cost_map = dict(zip(self.vocabulary, costs))
@@ -123,7 +136,7 @@ class Decat:
             _out = list(out)
             length = len(_out)
             for index, punctuation in self.preservable_character_map.items():
-                if index in range(counter, counter + length+1):
+                if index in range(counter, counter + length + 1):
                     _out.insert(index - counter, punctuation)
                     length = len(_out)
             counter += length
