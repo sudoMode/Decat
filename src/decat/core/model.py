@@ -67,29 +67,32 @@ class Decat:
 
     def _reset_preservable_character_map(self):
         """
-            Sets preservable character map to an empyt dictionary
+            Sets preservable character map to an empty dictionary
         """
         self.preservable_character_map = {}
 
     def _load_target_string(self, string):
         """
-            - Parses user input
-            - Preserves user input in a private variable called _target_string
-            - Parses alpha characters into a public variable called target_string
+            - Remove white space and save user input in a private _target_string
+            - Parses alpha characters into a target_string
         """
         self._reset_target_string()
         self._reset_preservable_character_map()
         self._reset_output()
         self._reset_costs()
-        # remove punctuation marks, numbers and white spaces
+        # remove white spaces
         string = string.replace(' ', '')
         self._target_string = string
+        # parse user input
         for i in range(len(string)):
             char = string[i]
-            if self.preserve_special_characters:
-                if char in Decat.CHARACTERS_TO_PRESERVE:
-                    self.preservable_character_map[i] = char
-                    continue
+            # map special characters to their index in input string
+            # this will be used later to re-insert special characters at correct indeces
+            if self.preserve_special_characters and char in Decat.CHARACTERS_TO_PRESERVE:
+                self.preservable_character_map[i] = char
+                continue
+            # extract alpha characters only
+            # these will be used to generate probable dictionary tokens
             if char.isalpha(): self.target_string += char.lower()
 
     def _get_minimum_cost_pair(self, i):
