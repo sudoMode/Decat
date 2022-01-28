@@ -28,6 +28,11 @@ class Decat:
 
     @staticmethod
     def _get_word_cost(rank, total, decimals=3):
+        """
+            - Compute word-cost
+            - Word-cost is inversely proportional to its rank in the frequency table
+            - More frequent words have a lower cost
+        """
         return round(log(rank * log(total)), decimals)
 
     def _load(self):
@@ -52,9 +57,9 @@ class Decat:
 
     def _load_cost_map(self):
         """
-            Build a cost-map for each token in the vocabulary
+            Build a cost-map, each token will be associated with cost based on its rank
         """
-        total = len(self.vocabulary)
+        total = len(self.vocabulary)  # total tokens
         costs = list(map(lambda x: Decat._get_word_cost(x, total), range(1, total + 1)))
         self.cost_map = dict(zip(self.vocabulary, costs))
 
