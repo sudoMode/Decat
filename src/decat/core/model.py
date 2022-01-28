@@ -125,18 +125,23 @@ class Decat:
 
     def _compute_costs(self):
         """
-            Compute cost for all sub-strings in the input string
+            Compute costs for all sub-strings in the input string
         """
         for i in range(1, len(self.target_string) + 1):
             cost, length = self._get_minimum_cost_pair(i)
             self.costs.append(cost)
 
     def _backtrack(self):
+        """
+            Back the input string to find probable tokens
+        """
         i = len(self.target_string)
         out = []
         while i > 0:
             cost, length = self._get_minimum_cost_pair(i)
+            # cost generated for given index matches the cost computed
             if cost == self.costs[i]:
+                # extract sub-string using current index & length received earlier
                 out.append(self.target_string[i - length:i])
                 i -= length
         self._output = list(reversed(out))
