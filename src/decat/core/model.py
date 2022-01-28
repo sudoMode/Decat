@@ -20,10 +20,10 @@ class Decat:
         self.vocabulary = list()
         self.max_word = 0
         self.cost_map = dict()
-        self.punctuation_map = dict()
+        self.preservable_character_map = dict()
         self.costs = [0]
-        self.out = list()
-        self._out = list()
+        self.output = list()
+        self._output = list()
         self._load()
 
     @staticmethod
@@ -45,24 +45,41 @@ class Decat:
         costs = list(map(lambda x: Decat._get_word_cost(x, total), range(1, total + 1)))
         self.cost_map = dict(zip(self.vocabulary, costs))
 
-    def _reset_out(self):
-        self._out = list()
-        self.out = list()
+    def _reset_output(self):
+        """
+            Sets private & public output to an empty list
+        """
+        self._output = []
+        self.output = []
 
     def _reset_costs(self):
+        """
+            Sets cost array to the inital value, a list with a single element i.e. 0
+        """
         self.costs = [0]
 
     def _reset_target_string(self):
+        """
+            Sets private & public target strings to an empty string
+        """
         self._target_string = ''
         self.target_string = ''
 
-    def _reset_punctuation_map(self):
-        self.punctuation_map = {}
+    def _reset_preservable_character_map(self):
+        """
+            Sets preservable character map to an empyt dictionary
+        """
+        self.preservable_character_map = {}
 
     def _load_target_string(self, string):
+        """
+            - Parses user input
+            - Preserves user input in a private variable called _target_string
+            - Parses alpha characters into a public variable called target_string
+        """
         self._reset_target_string()
-        self._reset_punctuation_map()
-        self._reset_out()
+        self._reset_preservable_character_map()
+        self._reset_output()
         self._reset_costs()
         # remove punctuation marks, numbers and white spaces
         string = string.replace(' ', '')
@@ -71,7 +88,7 @@ class Decat:
             char = string[i]
             if self.preserve_special_characters:
                 if char in Decat.CHARACTERS_TO_PRESERVE:
-                    self.punctuation_map[i] = char
+                    self.preservable_character_map[i] = char
                     continue
             if char.isalpha(): self.target_string += char.lower()
 
@@ -93,21 +110,21 @@ class Decat:
             if cost == self.costs[i]:
                 out.append(self.target_string[i - length:i])
                 i -= length
-        self._out = list(reversed(out))
+        self._output = list(reversed(out))
 
     def _flush_out(self):
         _out = []
         counter = 0
-        for out in self._out:
+        for out in self._output:
             inserted = 0
             _out = list(out)
             length = len(_out)
-            for index, punctuation in self.punctuation_map.items():
+            for index, punctuation in self.preservable_character_map.items():
                 if index in range(counter, counter + length+1):
                     _out.insert(index - counter, punctuation)
                     length = len(_out)
             counter += length
-            self.out.append(''.join(_out))
+            self.output.append(''.join(_out))
 
     def _setup(self):
         pass
@@ -126,7 +143,7 @@ def _test():
     client.preserve_special_characters = True
     test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\""
     client.decat(target_string=test_string)
-    print(client.out)
+    print(client.output)
 
 
 if __name__ == '__main__':
