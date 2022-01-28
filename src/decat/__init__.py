@@ -20,7 +20,8 @@ client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
 
 
 # decat user input
-def decat(string):
+def decat(string, preserve_special_characters=False):
+    client.preserve_special_characters = preserve_special_characters
     client.decat(string)
     return client.out
 
@@ -41,7 +42,7 @@ __all__ = [
 
 
 def test():
-    print(decat('teststring'))
+    print(decat('dummy.email@gmail.com'))
 
 
 if __name__ == '__main__':

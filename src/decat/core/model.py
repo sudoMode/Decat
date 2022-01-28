@@ -4,10 +4,11 @@ from math import log
 
 class Decat:
     PUNTUATION_MARKS = [',', '.', '?', '!', '#', ':', ';', '-', '[', ']', '{', '}',
-                        '(', ')', '`', '...', '"', "'"]
+                        '(', ')', '`', '...', '"', "'", '@', '0', '1', '2', '3', '4',
+                        '5', '6', '7', '8', '9']
 
     def __init__(self, supported_languages, vocabulary_map, target_string='',
-                 language='en', preserve_punctuation_marks=False):
+                 language='en', preserve_special_characters=False):
         assert language in supported_languages.values(), f'Language "{language}" is not' \
                                                          f' supported yet, pick from: ' \
                                                          f'{supported_languages.keys()}'
@@ -15,7 +16,7 @@ class Decat:
         self._target_string = ''
         self.language = language
         self.vocabulary_map = vocabulary_map
-        self.preserve_punction_marks = preserve_punctuation_marks
+        self.preserve_special_characters = preserve_special_characters
         self.vocabulary = list()
         self.max_word = 0
         self.cost_map = dict()
@@ -44,21 +45,35 @@ class Decat:
         costs = list(map(lambda x: Decat._get_word_cost(x, total), range(1, total + 1)))
         self.cost_map = dict(zip(self.vocabulary, costs))
 
+    def _reset_out(self):
+        self._out = list()
+        self.out = list()
+
     def _reset_costs(self):
         self.costs = [0]
 
+    def _reset_target_string(self):
+        self._target_string = ''
+        self.target_string = ''
+
+    def _reset_punctuation_map(self):
+        self.punctuation_map = {}
+
     def _load_target_string(self, string):
+        self._reset_target_string()
+        self._reset_punctuation_map()
+        self._reset_out()
+        self._reset_costs()
         # remove punctuation marks, numbers and white spaces
         string = string.replace(' ', '')
         self._target_string = string
         for i in range(len(string)):
             char = string[i]
-            if self.preserve_punction_marks:
+            if self.preserve_special_characters:
                 if char in Decat.PUNTUATION_MARKS:
                     self.punctuation_map[i] = char
                     continue
             if char.isalpha(): self.target_string += char.lower()
-        self._reset_costs()
 
     def _get_minimum_cost_pair(self, i):
         return min(map(lambda x: (x[1] + self.cost_map.get(
@@ -107,11 +122,11 @@ class Decat:
 def _test():
     from decat import __settings__ as settings
     client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
-                   vocabulary_map=settings.VOCABULARY_MAP,
-                   preserve_punctuation_marks=False)
-    test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\" she said."
+                   vocabulary_map=settings.VOCABULARY_MAP)
+    client.preserve_special_characters = True
+    test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\""
     client.decat(target_string=test_string)
-    # print(client.out)
+    print(client.out)
 
 
 if __name__ == '__main__':
