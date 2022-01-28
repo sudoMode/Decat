@@ -114,11 +114,19 @@ class Decat:
             if char.isalpha(): self.target_string += char.lower()
 
     def _get_minimum_cost_pair(self, i):
+        """
+            - Map a cost to each sub-string from the cost map
+            - Map infinity, if sub-string does not exist in the vocabulary
+            - Return a pair of cost and length of the sub-string
+        """
         return min(map(lambda x: (x[1] + self.cost_map.get(
             self.target_string[i - x[0] - 1: i], 1e1000), x[0] + 1),
                        enumerate(reversed(self.costs[max(0, i - self.max_word):i]))))
 
     def _compute_costs(self):
+        """
+            Compute cost for all sub-strings in the input string
+        """
         for i in range(1, len(self.target_string) + 1):
             cost, length = self._get_minimum_cost_pair(i)
             self.costs.append(cost)
@@ -162,7 +170,8 @@ def _test():
     client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
                    vocabulary_map=settings.VOCABULARY_MAP)
     client.preserve_special_characters = True
-    test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\""
+    # test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\""
+    test_string = "onelove"
     client.decat(target_string=test_string)
     print(client.output)
 
