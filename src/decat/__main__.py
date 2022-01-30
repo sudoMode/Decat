@@ -1,8 +1,7 @@
 #!/usr/local/bin/python3.9
 # -*- coding: utf-8 -*-
 
-from . import hook
-
+from decat import main
 
 if __name__ == '__main__':
-    hook()
+    main()
