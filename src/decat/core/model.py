@@ -147,6 +147,9 @@ class Decat:
         self._output = list(reversed(out))
 
     def _flush_out(self):
+        """
+            Reinsert special characters
+        """
         _out = []
         counter = 0
         for out in self._output:
