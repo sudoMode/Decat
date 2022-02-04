@@ -29,6 +29,7 @@ def decat(string, preserve_special_characters=False):
 # allows for a CLI
 def main():
     args = parse_user_args()
+    print(f'UA: {args}')
     if args.version:
         print(f'Decat {settings.VERSION}')
     if args.input:
