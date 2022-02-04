@@ -23,7 +23,7 @@ client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
 def decat(string, preserve_special_characters=False):
     client.preserve_special_characters = preserve_special_characters
     client.decat(string)
-    return client.out
+    return client.output
 
 
 # allows for a CLI
