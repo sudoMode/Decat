@@ -178,8 +178,7 @@ def _test():
     client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
                    vocabulary_map=settings.VOCABULARY_MAP)
     client.preserve_special_characters = True
-    # test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\""
-    test_string = "onelove"
+    test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\""
     client.decat(target_string=test_string)
     print(client.output)
 
