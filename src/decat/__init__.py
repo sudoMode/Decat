@@ -23,7 +23,7 @@ client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
 def decat(string, preserve_special_characters=False):
     client.preserve_special_characters = preserve_special_characters
     client.decat(string)
-    return client.out
+    return client.output
 
 
 # allows for a CLI
@@ -32,7 +32,8 @@ def main():
     if args.version:
         print(f'Decat {settings.VERSION}')
     if args.input:
-        print(decat(args.input))
+        print(decat(args.input,
+                    preserve_special_characters=args.preserve_special_chars))
 
 
 __all__ = [
@@ -42,7 +43,12 @@ __all__ = [
 
 
 def test():
-    print(decat('dummy.email@gmail.com'))
+    target = 'dummy.email@gmail.com'
+    print('Standard conversion...')
+    print(f'Target: {target} | Results: {decat(target)}')
+    print('\nPreserving special characters...')
+    print(f'Target: {target} | Results: '
+          f'{decat(target, preserve_special_characters=True)}')
 
 
 if __name__ == '__main__':
