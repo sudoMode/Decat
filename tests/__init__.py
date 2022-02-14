@@ -3,7 +3,7 @@ import json
 
 from unittest import TestCase
 from unittest import main
-from unittest import skip
+# from unittest import skip
 
 
 EXTRACTOR_INPUT = 'extractor_input.json'
