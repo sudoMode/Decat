@@ -6,8 +6,8 @@ input_type = VALIDATORS.get('input', str)
 
 
 def _validate_user_args(args, parser):
-    values = list(vars(args).values())
-    user_did_not_pass_any_arguments = values.count(None) + values.count(False) == len(values)
+    user_did_not_pass_any_arguments = args.version is False and args.input is None \
+                                      and args.preserve_special_chars is False
     if user_did_not_pass_any_arguments:
         parser.print_help()
         exit(0)
