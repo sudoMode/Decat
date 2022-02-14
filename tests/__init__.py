@@ -3,8 +3,6 @@ import json
 
 from unittest import TestCase
 from unittest import main
-# from unittest import skip
-
 
 EXTRACTOR_INPUT = 'extractor_input.json'
 PASSAGE_INPUT = 'passage_input.json'
@@ -30,19 +28,16 @@ class DecatTester(TestCase):
     def tearDown(self):
         pass
 
-    # @skip('Temporarily skipping...')
     def test_simple_decat(self):
         for key, value in self.extractor_input.items():
             out = decat(key)
             self.assertEqual(out, value)
 
-    # @skip('Temporarily skipping...')
     def test_passage_decat(self):
         for passage in self.passage_input:
             out = decat(passage['input'])
             self.assertEqual(out, passage['output'])
 
-    # @skip('Temporarily skipping...')
     def test_presevervation_of_special_characters(self):
         input_ = {
                     'stringwithoutspace,andwithacomma':
