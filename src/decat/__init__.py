@@ -32,7 +32,8 @@ def main():
     if args.version:
         print(f'Decat {settings.VERSION}')
     if args.input:
-        print(decat(args.input))
+        print(decat(args.input,
+                    preserve_special_characters=args.preserve_special_chars))
 
 
 __all__ = [
