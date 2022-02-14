@@ -43,7 +43,12 @@ __all__ = [
 
 
 def test():
-    print(decat('dummy.email@gmail.com'))
+    target = 'dummy.email@gmail.com'
+    print('Standard conversion...')
+    print(f'Target: {target} | Results: {decat(target)}')
+    print('\nPreserving special characters...')
+    print(f'Target: {target} | Results: '
+          f'{decat(target, preserve_special_characters=True)}')
 
 
 if __name__ == '__main__':
