@@ -25,6 +25,10 @@ def parse_user_args(command_line=None):
                         help='Use this argument to specify your input string.')
     parser.add_argument('--version', '-v', default=False, action='store_true',
                         help='Display the current version of the program.')
+    parser.add_argument('--preserve-special-chars', '-p', default=True,
+                        action='store_true',
+                        help='Use this toggle to preserve punctuation marks & other '
+                             'special characters in text.')
     args = parser.parse_args(command_line)
     _validate_user_args(args, parser)
     return args
