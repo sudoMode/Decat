@@ -7,7 +7,7 @@ input_type = VALIDATORS.get('input', str)
 
 def _validate_user_args(args, parser):
     values = list(vars(args).values())
-    user_did_not_pass_any_arguments = values.count(None) == len(values)
+    user_did_not_pass_any_arguments = values.count(None) + values.count(False) == len(values)
     if user_did_not_pass_any_arguments:
         parser.print_help()
         exit(0)
@@ -25,7 +25,7 @@ def parse_user_args(command_line=None):
                         help='Use this argument to specify your input string.')
     parser.add_argument('--version', '-v', default=False, action='store_true',
                         help='Display the current version of the program.')
-    parser.add_argument('--preserve-special-chars', '-p', default=True,
+    parser.add_argument('--preserve-special-chars', '-p', default=False,
                         action='store_true',
                         help='Use this toggle to preserve punctuation marks & other '
                              'special characters in text.')
