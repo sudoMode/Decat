@@ -50,7 +50,6 @@ class Decat:
             - Load vocabulary, a list of dictionary words
             - Vocabulary token are ordered based on frequency of usage
         """
-        # TODO: model should have direct access to vocabulary
         vocabulary = self.vocabulary_map[self.language]
         with open(vocabulary, 'r') as f:
             self.vocabulary = loads(f.read())
@@ -102,7 +101,7 @@ class Decat:
         string = string.replace(' ', '')
         self._target_string = string
         # parse user input
-        for i in range(len(string)):
+        for i, j in enumerate(string):
             char = string[i]
             # map special characters to their index in input string
             # this will be used later to re-insert special characters at correct indeces
@@ -111,7 +110,8 @@ class Decat:
                 continue
             # extract alpha characters only
             # these will be used to generate probable dictionary tokens
-            if char.isalpha(): self.target_string += char.lower()
+            if char.isalpha():
+                self.target_string += char.lower()
 
     def _get_minimum_cost_pair(self, i):
         """
@@ -177,7 +177,7 @@ def _test():
     from decat import __settings__ as settings
     client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
                    vocabulary_map=settings.VOCABULARY_MAP)
-    client.preserve_special_characters = True
+    client.preserve_special_characters = False
     test_string = "\"Just-try#with...someweirdpiecesoftext,okay?\""
     client.decat(target_string=test_string)
     print(client.output)
