@@ -105,12 +105,7 @@ information out of deformed pieces of texts.
 >>```python
 >> >>  dummy.email1234@gmail.com --> ['dummy', 'email', 'gmail', 'com']
 >>```
->
 
-## Credits
->> [Generic Human](https://stackoverflow.com/users/1515832/generic-human)
-> 
->> [Rachael Tatman](https://www.kaggle.com/rtatman)
 
 ## License
 > ### MIT

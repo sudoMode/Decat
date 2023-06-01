@@ -1,18 +1,11 @@
 #!/usr/local/bin/python3.9
 # -*- coding: utf-8 -*-
 
-from sys import version_info as version
 
 from decat import __settings__ as settings
 from decat.core import Decat
 from decat.parsers import parse_user_args
 
-# check version compatibility
-major, minor, micro = version.major, version.minor, version.micro
-required = 3.6
-if float(f'{major}.{minor}') < required:
-    print(f'Required Python >= {required}, detected: {major}.{minor}.{micro}')
-    exit(0)
 
 # init client
 client = Decat(supported_languages=settings.SUPPORTED_LANGUAGES,
@@ -37,9 +30,9 @@ def main():
 
 
 __all__ = [
-            'main',
-            'decat',
-          ]
+    'main',
+    'decat',
+]
 
 
 def test():
