@@ -1,10 +1,13 @@
 # Decat
+
 ```python
 thisisawesome --> ['this', 'is', 'awesome']
 ```
+
 ---
 
 [comment]: <> (badges 1)
+
 <p align="center">
     <a href="#">
         <img src="https://forthebadge.com/images/badges/made-with-python.svg"/>
@@ -23,6 +26,7 @@ thisisawesome --> ['this', 'is', 'awesome']
 ---
 
 [comment]: <> (badges 2)
+
 <p align="center">
     <a href="https://www.codefactor.io/repository/github/sudomode/decat">
         <img src="https://img.shields.io/codefactor/grade/github/sudomode/decat/master?style=for-the-badge"/>
@@ -40,72 +44,90 @@ thisisawesome --> ['this', 'is', 'awesome']
 
 ---
 
-
 [comment]: <> (Into)
-***Decat*** is a Python package capable of de-concatenating strings that do not have 
-white-spaces in them, or in other words, it allows the user to infer spaces 
-programmatically. This is a simple utility that comes in handy with various modern 
-Natural Language Processing(NLP) tasks such as cleaning, exploration or even manipulation 
-of text. [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law) is 
-at the 
-core of this 
-project, the aim is to provide an easy interface for programmers to extract meaningful 
+**_Decat_** is a Python package capable of de-concatenating strings that do not have
+white-spaces in them, or in other words, it allows the user to infer spaces
+programmatically. This is a simple utility that comes in handy with various modern
+Natural Language Processing(NLP) tasks such as cleaning, exploration or even manipulation
+of text. [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law) is
+at the
+core of this
+project, the aim is to provide an easy interface for programmers to extract meaningful
 information out of deformed pieces of texts.
 
-
 ## Get Started
+
 > ### Install It
->>```python
->> >> pip install decat
->>```
+>
+> > ```python
+> > >> pip install decat
+> > ```
+>
 > ### Play With It
->>```python
->> >> decat -i someweirdtext
->> >> ['some', 'weird', 'text']
->>```
->> or
->>```python
->> >> python -m decat -i justanotherstring
->> >> ['just', 'another', 'string']
->>```
+>
+> > ```python
+> > >> decat -i someweirdtext
+> > >> ['some', 'weird', 'text']
+> > ```
+> >
+> > or
+> >
+> > ```python
+> > >> python -m decat -i justanotherstring
+> > >> ['just', 'another', 'string']
+> > ```
+>
 > ### Use It In Your Projects
->> #### _Sample Code_
->>> ```python
->>> from decat import decat
->>> 
->>> 
->>> weird_text = '“AnyfoolcanwritecodethatacomputercanunderstandGoodprogrammerswritecodethathumanscanunderstand.”–MartinFowler'
->>> weird_text_simplified = decat(weird_text)
->>> print(weird_text_simplified)
->>>```
->> #### _Console_
->>> ['any', 'fool', 'can', 'write', 'code', 'that', 'a', 'computer', 'can', 
- 'understand', 'good', 'programmers', 'write', 'code', 'that', 'humans', 'can', 
- 'understand', 'martin', 'fowler'] 
+>
+> > #### _Sample Code_
+> >
+> > > ```python
+> > > from decat import decat
+> > >
+> > >
+> > > weird_text = '“AnyfoolcanwritecodethatacomputercanunderstandGoodprogrammerswritecodethathumanscanunderstand.”–MartinFowler'
+> > > weird_text_simplified = decat(weird_text)
+> > > print(weird_text_simplified)
+> > > ```
+> >
+> > #### _Console_
+> >
+> > > ['any', 'fool', 'can', 'write', 'code', 'that', 'a', 'computer', 'can',
+> > >
+> > > > > > 'understand', 'good', 'programmers', 'write', 'code', 'that', 'humans', 'can',
+> > > > > > 'understand', 'martin', 'fowler']
 
 ## Features
->> 🪶 A light weight package, built around the features available in standard library
+
+> > 🪶 A light weight package, built around the features available in standard library
 >
->> 📚 An ever-expanding vocabulary, knows more than 300K English words
-> 
->> 🪃 Simplistic design, allows for easy expansion to new languages and custom vocabulary sets
+> > 📚 An ever-expanding vocabulary, knows more than 300K English words
+>
+> > 🪃 Simplistic design, allows for easy expansion to new languages and custom vocabulary sets
 
 ## Dependencies
-> ⭕️ ___None___ 🎉
+
+> ⭕️ **_None_** 🎉
 
 ## Limitations
-> ❗ Requires Python >= 3.6
-> 
-> ❗ ️All input will be treated as lower-case
->>```python
->> >> ATitleCaseString --> ['a', 'title', 'case', 'string']
->>```
-> ❗️ Punctuation marks, numbers and special characters will be stripped from the input and
-> will not be preserved in the output
->>```python
->> >>  dummy.email1234@gmail.com --> ['dummy', 'email', 'gmail', 'com']
->>```
 
+> ❗ Requires Python >= 3.10
+>
+> ❗ ️All input will be treated as lower-case
+>
+> > ```python
+> > >> ATitleCaseString --> ['a', 'title', 'case', 'string']
+> > ```
+> >
+> > ❗️ Punctuation marks, numbers and special characters will be stripped from the input and
+> > will not be preserved in the output
+> >
+> > ```python
+> > >>  dummy.email1234@gmail.com --> ['dummy', 'email', 'gmail', 'com']
+> > ```
 
 ## License
+
 > ### MIT
+>
+> ✅ Tested support: Python 3.10, 3.11, 3.12, 3.13, 3.14
