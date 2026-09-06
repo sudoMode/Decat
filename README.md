@@ -97,6 +97,43 @@ information out of deformed pieces of texts.
 > > > > > > 'understand', 'good', 'programmers', 'write', 'code', 'that', 'humans', 'can',
 > > > > > > 'understand', 'martin', 'fowler']
 
+> ### Bulk Processing (Multiple Inputs)
+>
+> > #### _CLI_
+> >
+> > > ```shell
+> > > >> decat -i "somerandomtext" "somebettertext"
+> > > {
+> > >     "somerandomtext": {"results": ["some", "random", "text"], "confidence": 0.88, "elapsed": 0.27},
+> > >     "somebettertext": {"results": ["some", "better", "text"], "confidence": 0.95, "elapsed": 0.33}
+> > > }
+> > > ```
+> > >
+> > > Larger inputs can also be supplied through a file, decat currently
+> > > supports JSON files holding either a flat array of strings, or an
+> > > object with an "input" key holding a list of strings.
+> > >
+> > > ```shell
+> > > >> decat -i input_payload.json -f json -t 4
+> > > ```
+> > >
+> > > `-t/--threads` controls the number of workers used to process the
+> > > inputs concurrently and `-e/--executor` toggles between "thread"
+> > > (default) and "process" based concurrency.
+> > >
+> > > #### _Sample Code_
+> > >
+> > > ```python
+> > > from decat import decat
+> > >
+> > > deconcated = decat(["somerandomtext", "somebettertext"], threads=4)
+> > > print(deconcated)
+> > > ```
+> > >
+> > > Passing a single string keeps working exactly as before, returning a
+> > > flat list of tokens. Passing a list/iterable of strings switches to
+> > > the richer, dictionary based response shown above.
+
 ## Features
 
 > > 🪶 A light weight package, built around the features available in standard library
