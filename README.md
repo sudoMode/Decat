@@ -168,3 +168,4 @@ information out of deformed pieces of texts.
 > ### MIT
 >
 > ✅ Tested support: Python 3.10, 3.11, 3.12, 3.13, 3.14
+> Run testcases (from project root): `PYTHONPATH=src python -m unittest discover -s tests -p "*.py`
